@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MainMenu mainMenu = new MainMenu();
-        mainMenu.welcomePrompt();
+        Menu menu = new Menu();
+        menu.welcomePrompt();
     }
 }
