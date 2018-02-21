@@ -7,7 +7,7 @@ public class Task {
 
     private String task;
     private String dueDate;
-    private boolean isCompleted;
+    private boolean isComplete;
 
     public Task() {
     }
@@ -15,7 +15,7 @@ public class Task {
     public Task(String task, String dueDate, boolean isCompleted) {
         this.task = task;
         this.dueDate = dueDate;
-        this.isCompleted = isCompleted;
+        this.isComplete = isCompleted;
     }
 
     public String getTask() {
@@ -34,11 +34,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
+    public boolean isComplete() {
+        return isComplete;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setComplete(boolean completed) {
+        isComplete = completed;
     }
 }

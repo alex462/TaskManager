@@ -9,12 +9,12 @@ LIST: This class will hold all methods for both the Main Menu and the Edit Menu.
 
 public class List {
 
-    public MainMenu mainMenu;
-
+      public final MainMenu mainMenu;
 
     public List(MainMenu mainMenu) {
         this.mainMenu = mainMenu;
     }
+
 
     Task task = new Task();
 
@@ -31,6 +31,31 @@ public class List {
     }
 
     protected void viewAllTasks(){
+
+
+    }
+
+    protected void viewIncompleteTasks(){
+
+
+    }
+
+    protected void viewCompletedTasks(){
+
+
+    }
+
+    protected void makeTaskComplete(){
+
+
+    }
+
+    protected void editTask(){
+
+
+    }
+
+    protected void deleteTask(){
 
 
     }
