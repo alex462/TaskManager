@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private List list = new List(this);
-
-//    private EditMenu editMenu = new EditMenu(this);
+    private TaskList taskList = new TaskList(this);
 
     private Scanner input = new Scanner(System.in);
 
@@ -33,7 +31,7 @@ When viewing any list of tasks, the user will have the option to select a specif
         boolean isValidInput = false;
         while (!isValidInput) {
 
-            System.out.println("\nWhat would you like to do?\n" +
+            System.out.println("\nMAIN MENU: What would you like to do?\n" +
                     "Enter the number corresponding to the action you choose:\n" +
                     "1. Create a new task\n" +
                     "2. View your tasks\n" +
@@ -43,12 +41,12 @@ When viewing any list of tasks, the user will have the option to select a specif
             switch (input.nextLine()) {
 
                 case "1": //create new task
-                    list.createTask();
+                    taskList.createTask();
                     isValidInput = true;
                     break;
 
                 case "2": //view tasks
-                    list.viewAllTasks();
+                    taskList.viewAllTasks();
                     isValidInput = true;
                     break;
 
@@ -86,49 +84,44 @@ When viewing any list of tasks, the user will have the option to select a specif
         boolean isValidInput = false;
         while (!isValidInput) {
 
-            System.out.println("\nWhat would you like to do?\n" +
+            System.out.println("\nTASK EDITING MENU: What would you like to do?\n" +
                     "Enter the number corresponding to the action you choose:\n" +
-                    "1. View your incomplete tasks\n" +
-                    "2. View your completed tasks\n" +
-                    "3. Mark tasks as complete\n" +
-                    "4. Edit tasks\n" +
-                    "5. Delete tasks\n" +
-                    "6. Return to the main menu\n" +
-                    "7. Exit task manager");
+                    "1. Add a new task\n" +
+                    "2. Mark tasks as complete\n" +
+                    "3. Edit tasks\n" +
+                    "4. Delete tasks\n" +
+                    "5. Return to the main menu\n" +
+                    "6. Exit task manager");
 
             switch (input.nextLine()) {
 
-                case "1": //view incomplete tasks
-                    list.viewIncompleteTasks();
+                case "1": //add new task
+                    //same method ass create new task
+                    taskList.createTask();
                     isValidInput = true;
                     break;
 
-                case "2": //view completed tasks
-                    list.viewCompletedTasks();
+                case "2": //mark tasks complete
+                    taskList.makeTaskComplete();
                     isValidInput = true;
                     break;
 
-                case "3": //mark tasks complete
-                    list.makeTaskComplete();
+                case "3": //edit task
+                    taskList.editTask();
                     isValidInput = true;
                     break;
 
-                case "4": //edit task
-                    list.editTask();
+                case "4": //delete task
+                    taskList.deleteTask();
                     isValidInput = true;
                     break;
 
-                case "5": //delete task
-                    list.deleteTask();
-                    isValidInput = true;
-                    break;
-
-                case "6": //main menu
+                case "5": //main menu
                     mainMenu();
                     isValidInput = true;
                     break;
 
-                case "7": //exit
+                case "6": //exit
                     exitProgram();
                     isValidInput = true;
                     break;
@@ -139,6 +132,8 @@ When viewing any list of tasks, the user will have the option to select a specif
             }
         }
     }
+
+
 
     private void exitProgram() {
 
