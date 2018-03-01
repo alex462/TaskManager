@@ -56,7 +56,7 @@ public class TaskList {
         task.setEntireTask(task.getTaskName(), task.getTaskDescription(), task.getDeadline(), task.isPriority(), task.getOtherNotes(), task.isComplete());
 
         //add all data for task to arraylist
-        allTasks.add(task.getTaskName());
+        allTasks.add(task.getEntireTask());
         incompleteTasks.add(task.getTaskName());
 
 
@@ -106,7 +106,15 @@ public class TaskList {
 
     protected void viewTaskDetails(){
 
-
+        System.out.println("\nINCOMPLETE TASKS\nEnter the number corresponding to the task you would like to see in detail: ");
+        int position = 1;
+        for (int i = 0; i < incompleteTasks.size(); i++) {
+            System.out.println(position + ". " + incompleteTasks.get(i) + " ");
+            position++;
+        }
+        String tempTask = incompleteTasks.get(input.nextInt() - 1);
+        System.out.println(task.getEntireTask());
+        menu.taskListMenu();
     }
 
     protected void makeTaskComplete() {
@@ -126,7 +134,7 @@ public class TaskList {
 
         incompleteTasks.remove(tempTask);
         completedTasks.add(tempTask);
-        completedTasks.sort(String::compareToIgnoreCase);
+//        completedTasks.sort(String::compareToIgnoreCase);
 
         menu.taskListMenu();
 
