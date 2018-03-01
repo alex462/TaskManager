@@ -80,7 +80,7 @@ EDIT MENU: This menu outputs editing options to user concerning their already ex
 When viewing any list of tasks, the user will have the option to select a specific task and view its details.
  */
 
-    private void editTasksMenu() {
+    protected void editTasksMenu() {
 
         boolean isValidInput = false;
         while (!isValidInput) {
@@ -134,7 +134,7 @@ When viewing any list of tasks, the user will have the option to select a specif
         }
     }
 
-    private void taskListMenu() {
+    protected void taskListMenu() {
 
         boolean isValidInput = false;
         while (!isValidInput) {
@@ -183,15 +183,15 @@ When viewing any list of tasks, the user will have the option to select a specif
         }
     }
 
-    private void viewDetailsMenu() {
+    protected void viewDetailsMenu() {
 
         boolean isValidInput = false;
         while (!isValidInput) {
 
             System.out.println("\nWhat would you like to do?\n" +
                     "Enter the number corresponding to the action you choose:\n" +
-                    "1. View the details of one of the tasks in this list?\n" +
-                    "2. View a different list of tasks\n" +
+                    "1. View the details of a task in this list\n" +
+                    "2. View a different task list\n" +
                     "3. Return to the main menu\n" +
                     "4. Return to the task editing menu\n" +
                     "5. Exit task manager");
@@ -204,7 +204,7 @@ When viewing any list of tasks, the user will have the option to select a specif
                     break;
 
                 case "2": //task list menu
-                    viewDetailsMenu();
+                    taskListMenu();
                     isValidInput = true;
                     break;
 

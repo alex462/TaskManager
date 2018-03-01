@@ -20,9 +20,9 @@ public class TaskList {
     Task task = new Task();
 
     protected List<String> allTasks = new ArrayList<>();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
     protected List<String> incompleteTasks = new ArrayList<>();
-    protected List<String> completeTasks = new ArrayList<>();
+    protected List<String> completedTasks = new ArrayList<>();
     private Scanner input = new Scanner(System.in);
 
     public TaskList(ArrayList<String> allTasks) {
@@ -102,19 +102,7 @@ public class TaskList {
         }
     }
 
-    protected void viewCompletedTasks() {
 
-        /**
-         * inside this code, there should always be an option for the user to select any task and view its details
-         */
-        System.out.println("\nCOMPLETED TASKS");
-
-//        int position = 1;
-//        for (int i = 0; i < completedTasks.size(); i++) {
-//            System.out.println(position + ". " + completedTasks.get(i) + " ");
-//            position++;
-//        }
-    }
 
     protected void viewTaskDetails(){
 
@@ -123,8 +111,39 @@ public class TaskList {
 
     protected void makeTaskComplete() {
 
+        System.out.println("\nEnter the number corresponding to the task you have completed: ");
 
+        int position = 1;
+        for (int i = 0; i < incompleteTasks.size(); i++) {
+            System.out.println(position + ". " + incompleteTasks.get(i) + " ");
+            position++;
+        }
+        String tempTask = incompleteTasks.get(input.nextInt() - 1);
+        Calendar calendar = Calendar.getInstance();
 
+        System.out.println("You have completed " + tempTask + " on " + dateFormat.format(calendar.getTime()));
+        System.out.println();
+
+        incompleteTasks.remove(tempTask);
+        completedTasks.add(tempTask);
+        completedTasks.sort(String::compareToIgnoreCase);
+
+        menu.taskListMenu();
+
+    }
+
+    protected void viewCompletedTasks() {
+
+        /**
+         * inside this code, there should always be an option for the user to select any task and view its details
+         */
+        System.out.println("\nCOMPLETED TASKS");
+
+        int position = 1;
+        for (int i = 0; i < completedTasks.size(); i++) {
+            System.out.println(position + ". " + completedTasks.get(i) + " ");
+            position++;
+        }
     }
 
     protected void editTask() {
@@ -142,6 +161,7 @@ public class TaskList {
         String tempTask = allTasks.get(input.nextInt() - 1);
         System.out.println(tempTask + " has been removed from your task list.");
         allTasks.remove(tempTask);
+//        menu.editTasksMenu();
     }
 
     /**
