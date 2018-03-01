@@ -47,6 +47,7 @@ When viewing any list of tasks, the user will have the option to select a specif
 
                 case "2": //view tasks
                     taskList.viewAllTasks();
+                    taskListMenu();
                     isValidInput = true;
                     break;
 
@@ -79,7 +80,7 @@ EDIT MENU: This menu outputs editing options to user concerning their already ex
 When viewing any list of tasks, the user will have the option to select a specific task and view its details.
  */
 
-    protected void editTasksMenu() {
+    private void editTasksMenu() {
 
         boolean isValidInput = false;
         while (!isValidInput) {
@@ -133,6 +134,101 @@ When viewing any list of tasks, the user will have the option to select a specif
         }
     }
 
+    private void taskListMenu() {
+
+        boolean isValidInput = false;
+        while (!isValidInput) {
+
+            System.out.println("\nYOUR TASK LISTS: What would you like to do?\n" +
+                    "Enter the number corresponding to the action you choose:\n" +
+                    "1. View your incomplete tasks\n" +
+                    "2. View your completed tasks\n" +
+                    "3. Return to the main menu\n" +
+                    "4. Return to the task editing menu\n" +
+                    "5. Exit task manager");
+
+            switch (input.nextLine()) {
+
+                case "1": //view incomplete
+                    taskList.viewIncompleteTasks();
+                    viewDetailsMenu();
+                    isValidInput = true;
+                    break;
+
+                case "2": //view completed
+                    taskList.viewCompletedTasks();
+                    viewDetailsMenu();
+                    isValidInput = true;
+                    break;
+
+                case "3": //main menu
+                    mainMenu();
+                    isValidInput = true;
+                    break;
+
+                case "4": //edit tasks menu
+                    editTasksMenu();
+                    isValidInput = true;
+                    break;
+
+                case "5": //exit
+                    exitProgram();
+                    isValidInput = true;
+                    break;
+
+                default: //incorrect input
+                    invalidEntry();
+                    isValidInput = false;
+            }
+        }
+    }
+
+    private void viewDetailsMenu() {
+
+        boolean isValidInput = false;
+        while (!isValidInput) {
+
+            System.out.println("\nWhat would you like to do?\n" +
+                    "Enter the number corresponding to the action you choose:\n" +
+                    "1. View the details of one of the tasks in this list?\n" +
+                    "2. View a different list of tasks\n" +
+                    "3. Return to the main menu\n" +
+                    "4. Return to the task editing menu\n" +
+                    "5. Exit task manager");
+
+            switch (input.nextLine()) {
+
+                case "1": //view task details
+                    taskList.viewTaskDetails();
+                    isValidInput = true;
+                    break;
+
+                case "2": //task list menu
+                    viewDetailsMenu();
+                    isValidInput = true;
+                    break;
+
+                case "3": //main menu
+                    mainMenu();
+                    isValidInput = true;
+                    break;
+
+                case "4": //edit tasks menu
+                    editTasksMenu();
+                    isValidInput = true;
+                    break;
+
+                case "5": //exit
+                    exitProgram();
+                    isValidInput = true;
+                    break;
+
+                default: //incorrect input
+                    invalidEntry();
+                    isValidInput = false;
+            }
+        }
+    }
 
 
     private void exitProgram() {

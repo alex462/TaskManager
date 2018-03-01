@@ -38,16 +38,16 @@ public class TaskList {
          * (createTask and addTask could be same method. differentiate with an if/else statement: if arraylist > 0, output "Would you like to ADD another task?"
          */
 
-        System.out.println("\033[0;1m" + "CREATE A TASK");
-        System.out.println("\033[0;1m" + "Task name: ");
+        System.out.println("CREATE A TASK");
+        System.out.println("Task name: ");
         task.setTaskName(input.nextLine());
-        System.out.println("\033[0;1m" + "Task description: ");
+        System.out.println("Task description: ");
         task.setTaskDescription(input.nextLine());
-        System.out.println("\033[0;1m" + "Deadline (MM/DD/YY): ");
+        System.out.println("Deadline (MM/DD/YY): ");
         task.setDeadline(input.next());
-        System.out.println("\033[0;1m" + "Is this task a priority? (true/false): ");
+        System.out.println("Is this task a priority? (true/false): ");
         task.setPriority(input.nextBoolean());
-        System.out.println("\033[0;1m" + "Additional notes: ");
+        System.out.println("Additional notes: ");
         input.nextLine();
         task.setOtherNotes(input.nextLine());
         task.setComplete(false);
@@ -61,10 +61,10 @@ public class TaskList {
 
 
         //output task summation and confirmation to user
-        System.out.println("\033[0;1m" + "\nHere is the task you have created:\n");
-        System.out.println("Task Name: \033[0;0m" + task.getTaskName() +"\033[0;1m" + "\nDescription: \033[0;0m" + task.getTaskDescription() +"\033[0;1m" + "\nComplete by: \033[0;0m" + task.getDeadline() + "\033[0;1m" + "\nPriority task: \033[0;0m" + task.isPriority() + "\033[0;1m" + "\nAdditional notes: \033[0;0m" + task.getOtherNotes());
+        System.out.println("\nHere is the task you have created:\n");
+        System.out.println("Task Name: " + task.getTaskName() + "\nDescription: " + task.getTaskDescription() + "\nComplete by: " + task.getDeadline() + "\nPriority task: " + task.isPriority() + "\nAdditional notes: " + task.getOtherNotes());
 
-        System.out.println("\033[0;1m" + "\nYou may edit, delete, or mark this task as complete from the TASK EDITING MENU.\nYou may view this task's details by selecting the 'View your tasks' option from the MAIN MENU.");
+        System.out.println("\nYou may edit, delete, or mark this task as complete from the TASK EDITING MENU.\nYou may view this task's details by selecting the 'View your tasks' option from the MAIN MENU.");
 
         /**
          * STILL NEED TO FIX PRIORITY OUTPUT
@@ -79,7 +79,7 @@ public class TaskList {
          * inside this code, there should always be an option for the user to select any task and view its details
          */
 
-        System.out.println("\033[0;1m" + "ALL TASKS");
+        System.out.println("\nALL TASKS");
 
         int position = 1;
         for (int i = 0; i < allTasks.size(); i++) {
@@ -93,7 +93,7 @@ public class TaskList {
         /**
          * inside this code, there should always be an option for the user to select any task and view its details
          */
-        System.out.println("\033[0;1m" + "INCOMPLETE TASKS");
+        System.out.println("\nINCOMPLETE TASKS");
 
         int position = 1;
         for (int i = 0; i < incompleteTasks.size(); i++) {
@@ -107,13 +107,18 @@ public class TaskList {
         /**
          * inside this code, there should always be an option for the user to select any task and view its details
          */
-        System.out.println("\033[0;1m" + "COMPLETED TASKS");
+        System.out.println("\nCOMPLETED TASKS");
 
 //        int position = 1;
 //        for (int i = 0; i < completedTasks.size(); i++) {
 //            System.out.println(position + ". " + completedTasks.get(i) + " ");
 //            position++;
 //        }
+    }
+
+    protected void viewTaskDetails(){
+
+
     }
 
     protected void makeTaskComplete() {
