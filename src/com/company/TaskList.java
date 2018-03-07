@@ -101,22 +101,9 @@ public class TaskList {
         }
 
         int i = input.nextInt()-1;
-        for(Task task : incompleteTasks) {
-
-            incompleteTasks.get(i);
-
-            System.out.println(task.getTaskName());
-            System.out.println(task.getTaskDescription());
-            System.out.println(task.getTaskDeadline());
-            }
-
-            /*
-            for (Task task : incompleteTasks){
-            int i = incompleteTasks.indexOf(task);
-            System.out.println(task);
-             */
-
-
+        System.out.println(incompleteTasks.get(i).getTaskName());
+        System.out.println(incompleteTasks.get(i).getTaskDescription());
+        System.out.println(incompleteTasks.get(i).getTaskDeadline());
 
         menu.viewDetailsMenu();
     }
