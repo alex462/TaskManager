@@ -100,13 +100,23 @@ public class TaskList {
             position++;
         }
 
+        int i = input.nextInt()-1;
+        for(Task task : incompleteTasks) {
 
-        Task taskName = allTasks.get((input.nextInt() - 1));
-        if (taskName.equals(task.getTaskName())) {
+            incompleteTasks.get(i);
+
             System.out.println(task.getTaskName());
             System.out.println(task.getTaskDescription());
-            System.out.println((task.getTaskDeadline()));
-        }
+            System.out.println(task.getTaskDeadline());
+            }
+
+            /*
+            for (Task task : incompleteTasks){
+            int i = incompleteTasks.indexOf(task);
+            System.out.println(task);
+             */
+
+
 
         menu.viewDetailsMenu();
     }
