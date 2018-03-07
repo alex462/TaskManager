@@ -65,7 +65,7 @@ public class TaskList {
 
 
         int position = 1;
-        for(Task task : allTasks){
+        for (Task task : allTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
@@ -77,7 +77,7 @@ public class TaskList {
         System.out.println("\nINCOMPLETE TASKS");
 
         int position = 1;
-        for(Task task : incompleteTasks){
+        for (Task task : incompleteTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
@@ -87,19 +87,18 @@ public class TaskList {
     }
 
 
-
-    protected void viewTaskDetails(){
+    protected void viewTaskDetails() {
 
         System.out.println("\nINCOMPLETE TASKS\nEnter the number corresponding to the task you would like to see in detail: ");
 
 
         int position = 1;
-        for(Task task : incompleteTasks){
+        for (Task task : incompleteTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
 
-        int i = input.nextInt()-1;
+        int i = input.nextInt() - 1;
         System.out.println(incompleteTasks.get(i).getTaskName());
         System.out.println(incompleteTasks.get(i).getTaskDescription());
         System.out.println(incompleteTasks.get(i).getTaskDeadline());
@@ -112,12 +111,12 @@ public class TaskList {
         System.out.println("\nEnter the number corresponding to the task you have completed: ");
 
         int position = 1;
-        for(Task task : incompleteTasks){
+        for (Task task : incompleteTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
 
-        int i = input.nextInt()-1;
+        int i = input.nextInt() - 1;
         Calendar calendar = Calendar.getInstance();
 
         System.out.println("You have completed " + incompleteTasks.get(i).getTaskName() + " on " + dateFormat.format(calendar.getTime()));
@@ -134,7 +133,7 @@ public class TaskList {
         System.out.println("\nCOMPLETED TASKS");
 
         int position = 1;
-        for(Task task : completedTasks){
+        for (Task task : completedTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
@@ -145,42 +144,43 @@ public class TaskList {
         System.out.println("\nINCOMPLETE TASKS");
 
         int position = 1;
-        for(Task task : incompleteTasks){
+        for (Task task : incompleteTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
 
-        int i = input.nextInt()-1;
+        int i = input.nextInt() - 1;
         System.out.println(incompleteTasks.get(i).getTaskName());
         System.out.println(incompleteTasks.get(i).getTaskDescription());
         System.out.println(incompleteTasks.get(i).getTaskDeadline());
 
         System.out.println("Would you like to edit this task's name, currently '" + task.getTaskName() + "'? Enter y/n: ");
-        if(input.nextLine().toUpperCase().equals("y")){
+        if (input.nextLine().toUpperCase().equals("y")) {
             System.out.println("Enter the new name of this task: ");
             String taskName = input.nextLine();
             task.setTaskName(taskName);
         }
-        if(input.nextLine().toUpperCase().equals("n")){
+        if (input.nextLine().toUpperCase().equals("n")) {
             task.getTaskName();
         }
 
         System.out.println("Would you like to edit this task's description, currently '" + task.getTaskDescription() + "'? Enter y/n: ");
-        if(input.nextLine().toUpperCase().equals("y")){
+        if (input.nextLine().toUpperCase().equals("y")) {
             System.out.println("Enter the new description for this task: ");
             String taskDescription = input.nextLine();
             task.setTaskDescription(taskDescription);
         }
-        if(input.nextLine().toUpperCase().equals("n")){
+        if (input.nextLine().toUpperCase().equals("n")) {
             task.getTaskDescription();
         }
 
         System.out.println("Would you like to edit this task's deadline, currently " + task.getTaskDeadline() + "? Enter y/n: ");
-        if(input.nextLine().toUpperCase().equals("y")){
+        if (input.nextLine().toUpperCase().equals("y")) {
             System.out.println("Enter the new deadline for this task: ");
             String taskDeadline = input.nextLine();
             task.setTaskDeadline(taskDeadline);
-        }if(input.nextLine().toUpperCase().equals("n")){
+        }
+        if (input.nextLine().toUpperCase().equals("n")) {
             task.getTaskDeadline();
         }
         System.out.println("\nHere is your edited task:\n");
@@ -196,28 +196,16 @@ public class TaskList {
         System.out.println("\nALL TASKS");
 
         int position = 1;
-        for(Task task : allTasks){
+        for (Task task : allTasks) {
             System.out.println(position + ". " + task.getTaskName());
             position++;
         }
 
-        int i = input.nextInt()-1;
+        int i = input.nextInt() - 1;
         System.out.println(allTasks.get(i).getTaskName() + " has been removed from your task list.");
 
         allTasks.remove(task);
 
         menu.editTasksMenu();
-    }
-
-    private void exitProgram() {
-
-        System.out.println("\nThank you for using the Task Manager.");
-        System.exit(13);
-    }
-
-    //error handling
-    private void invalidEntry() {
-
-        System.out.println("Invalid entry.");
     }
 }

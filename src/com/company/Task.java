@@ -18,7 +18,7 @@ public class Task {
         this.taskDeadline = taskDeadline;
     }
 
-    protected Task(){
+    protected Task() {
 
     }
 
