@@ -5,30 +5,21 @@ package com.company;
 /*
 TASK: This class will define "task" and hold getters and setters for anything related to the definition of a "task"
  */
+
 public class Task {
 
-    private String entireTask;
     private String taskName;
     private String taskDescription;
-    private String deadline;
-    private boolean isPriority;
-    private String otherNotes;
-    private boolean isComplete;
+    private String taskDeadline;
 
-    public Task() {
-    }
-
-    public void setEntireTask(String taskName, String taskDescription, String deadline, boolean isPriority, String otherNotes, boolean isComplete) {
+    public Task(String taskName, String taskDescription, String taskDeadline) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
-        this.deadline = deadline;
-        this.isPriority = isPriority;
-        this.otherNotes = otherNotes;
-        this.isComplete = isComplete;
+        this.taskDeadline = taskDeadline;
     }
 
-    public String getEntireTask(){
-        return entireTask;
+    protected Task(){
+
     }
 
     public String getTaskName() {
@@ -47,35 +38,11 @@ public class Task {
         this.taskDescription = taskDescription;
     }
 
-    public String getDeadline() {
-        return deadline;
+    public String getTaskDeadline() {
+        return taskDeadline;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
-    }
-
-    public boolean isPriority() {
-        return isPriority;
-    }
-
-    public void setPriority(boolean priority) {
-        isPriority = priority;
-    }
-
-    public String getOtherNotes() {
-        return otherNotes;
-    }
-
-    public void setOtherNotes(String otherNotes) {
-        this.otherNotes = otherNotes;
-    }
-
-    public boolean isComplete() {
-        return isComplete;
-    }
-
-    public void setComplete(boolean complete) {
-        isComplete = complete;
+    public void setTaskDeadline(String taskDeadline) {
+        this.taskDeadline = taskDeadline;
     }
 }

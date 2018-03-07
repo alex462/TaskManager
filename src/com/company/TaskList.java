@@ -1,83 +1,64 @@
 package com.company;
 
-//import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
 TaskList: This class will hold all methods for both the Main Menu and the Edit Menu.
  */
 
+
 public class TaskList {
 
     public Menu menu;
+    Task task = new Task();
+    private Scanner input = new Scanner(System.in);
+
 
     protected TaskList(Menu menu) {
         this.menu = menu;
     }
 
-    Task task = new Task();
-
-    protected List<String> allTasks = new ArrayList<>();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
+    protected List<String> allTasks = new ArrayList<>();
     protected List<String> incompleteTasks = new ArrayList<>();
     protected List<String> completedTasks = new ArrayList<>();
-    private Scanner input = new Scanner(System.in);
-
-    public TaskList(ArrayList<String> allTasks) {
-        this.allTasks = allTasks;
-    }
-
-    public TaskList() {
-    }
 
     protected void createTask() {
 
-        /**
-         * (createTask and addTask could be same method. differentiate with an if/else statement: if arraylist > 0, output "Would you like to ADD another task?"
-         */
+        System.out.println("\nCREATE A TASK");
 
-        System.out.println("CREATE A TASK");
         System.out.println("Task name: ");
-        task.setTaskName(input.nextLine());
-        System.out.println("Task description: ");
-        task.setTaskDescription(input.nextLine());
-        System.out.println("Deadline (MM/DD/YY): ");
-        task.setDeadline(input.next());
-        System.out.println("Is this task a priority? (true/false): ");
-        task.setPriority(input.nextBoolean());
-        System.out.println("Additional notes: ");
-        input.nextLine();
-        task.setOtherNotes(input.nextLine());
-        task.setComplete(false);
+        String taskName = input.nextLine();
+        task.setTaskName(taskName);
 
-        //set task as one entire object for array list purposes
-        task.setEntireTask(task.getTaskName(), task.getTaskDescription(), task.getDeadline(), task.isPriority(), task.getOtherNotes(), task.isComplete());
+        System.out.println("Task description:");
+        String taskDescription = input.nextLine();
+        task.setTaskDescription(taskDescription);
 
-        //add all data for task to arraylist
-        allTasks.add(task.getEntireTask());
+        System.out.println("Task deadline:");
+        String taskDeadline = input.nextLine();
+        task.setTaskDeadline(taskDeadline);
+
+        //create task object and add to both arraylists allTasks and incompleteTasks
+        Task task = new Task(taskName, taskDescription, taskDeadline);
+        allTasks.add(taskName);
         incompleteTasks.add(task.getTaskName());
 
-
-        //output task summation and confirmation to user
+        //output new task to user
         System.out.println("\nHere is the task you have created:\n");
-        System.out.println("Task Name: " + task.getTaskName() + "\nDescription: " + task.getTaskDescription() + "\nComplete by: " + task.getDeadline() + "\nPriority task: " + task.isPriority() + "\nAdditional notes: " + task.getOtherNotes());
+        System.out.println("Task Name: " + task.getTaskName() + "\nDescription: " + task.getTaskDescription() + "\nComplete by: " + task.getTaskDeadline());
 
         System.out.println("\nYou may edit, delete, or mark this task as complete from the TASK EDITING MENU.\nYou may view this task's details by selecting the 'View your tasks' option from the MAIN MENU.");
 
-        /**
-         * STILL NEED TO FIX PRIORITY OUTPUT
-         */
-
+        //return to main menu
         menu.mainMenu();
     }
 
     protected void viewAllTasks() {
-
-        /**
-         * inside this code, there should always be an option for the user to select any task and view its details
-         */
 
         System.out.println("\nALL TASKS");
 
@@ -90,16 +71,15 @@ public class TaskList {
 
     protected void viewIncompleteTasks() {
 
-        /**
-         * inside this code, there should always be an option for the user to select any task and view its details
-         */
         System.out.println("\nINCOMPLETE TASKS");
 
         int position = 1;
-        for (int i = 0; i < incompleteTasks.size(); i++) {
-            System.out.println(position + ". " + incompleteTasks.get(i) + " ");
+        for(int i = 0; i < allTasks.size(); i++){
+            System.out.println(position + ". " + allTasks.get(i) + " ");
             position++;
         }
+
+        menu.viewDetailsMenu();
     }
 
 
@@ -107,14 +87,22 @@ public class TaskList {
     protected void viewTaskDetails(){
 
         System.out.println("\nINCOMPLETE TASKS\nEnter the number corresponding to the task you would like to see in detail: ");
+
+        Task task = new Task();
         int position = 1;
-        for (int i = 0; i < incompleteTasks.size(); i++) {
-            System.out.println(position + ". " + incompleteTasks.get(i) + " ");
+        for (int i = 0; i < allTasks.size(); i++) {
+            System.out.println(position + ". " + allTasks.get(i) + " ");
             position++;
         }
-        String tempTask = incompleteTasks.get(input.nextInt() - 1);
-        System.out.println(task.getEntireTask());
-        menu.taskListMenu();
+
+        String taskName = allTasks.get((input.nextInt() - 1));
+        if (taskName.equals(task.getTaskName())) {
+            System.out.println(task.getTaskName());
+            System.out.println(task.getTaskDescription());
+            System.out.println((task.getTaskDeadline()));
+        }
+
+        menu.viewDetailsMenu();
     }
 
     protected void makeTaskComplete() {
@@ -126,6 +114,7 @@ public class TaskList {
             System.out.println(position + ". " + incompleteTasks.get(i) + " ");
             position++;
         }
+
         String tempTask = incompleteTasks.get(input.nextInt() - 1);
         Calendar calendar = Calendar.getInstance();
 
@@ -134,17 +123,12 @@ public class TaskList {
 
         incompleteTasks.remove(tempTask);
         completedTasks.add(tempTask);
-//        completedTasks.sort(String::compareToIgnoreCase);
 
         menu.taskListMenu();
-
     }
 
     protected void viewCompletedTasks() {
 
-        /**
-         * inside this code, there should always be an option for the user to select any task and view its details
-         */
         System.out.println("\nCOMPLETED TASKS");
 
         int position = 1;
@@ -165,25 +149,29 @@ public class TaskList {
     protected void deleteTask() {
 
         System.out.println("Enter the number that corresponds to the task you would like to delete from your task list: ");
-        viewAllTasks();
+
+        System.out.println("\nALL TASKS");
+
+        int position = 1;
+        for (int i = 0; i < allTasks.size(); i++) {
+            System.out.println(position + ". " + allTasks.get(i) + " ");
+            position++;
+        }
+
         String tempTask = allTasks.get(input.nextInt() - 1);
         System.out.println(tempTask + " has been removed from your task list.");
+
         allTasks.remove(tempTask);
-//        menu.editTasksMenu();
+
+        menu.editTasksMenu();
     }
 
-    /**
-     * There should always be a way for the user to exit the program.
-     */
     private void exitProgram() {
 
         System.out.println("\nThank you for using the Task Manager.");
         System.exit(13);
     }
 
-    /**
-     * Make sure there are no holes in error handling.
-     */
     //error handling
     private void invalidEntry() {
 
