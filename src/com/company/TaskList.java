@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.tools.javac.jvm.Items;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Scanner;
@@ -23,9 +25,9 @@ public class TaskList {
     }
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
-    protected List<String> allTasks = new ArrayList<>();
-    protected List<String> incompleteTasks = new ArrayList<>();
-    protected List<String> completedTasks = new ArrayList<>();
+    protected List<Task> allTasks = new ArrayList<>();
+    protected List<Task> incompleteTasks = new ArrayList<>();
+    protected List<Task> completedTasks = new ArrayList<>();
 
     protected void createTask() {
 
@@ -45,8 +47,8 @@ public class TaskList {
 
         //create task object and add to both arraylists allTasks and incompleteTasks
         Task task = new Task(taskName, taskDescription, taskDeadline);
-        allTasks.add(taskName);
-        incompleteTasks.add(task.getTaskName());
+        allTasks.add(task);
+        incompleteTasks.add(task);
 
         //output new task to user
         System.out.println("\nHere is the task you have created:\n");
@@ -62,11 +64,13 @@ public class TaskList {
 
         System.out.println("\nALL TASKS");
 
+
         int position = 1;
-        for (int i = 0; i < allTasks.size(); i++) {
-            System.out.println(position + ". " + allTasks.get(i) + " ");
+        for(Task task : allTasks){
+            System.out.println(position + ". " + task.getTaskName());
             position++;
         }
+
     }
 
     protected void viewIncompleteTasks() {
@@ -74,10 +78,11 @@ public class TaskList {
         System.out.println("\nINCOMPLETE TASKS");
 
         int position = 1;
-        for(int i = 0; i < allTasks.size(); i++){
-            System.out.println(position + ". " + allTasks.get(i) + " ");
+        for(Task task : incompleteTasks){
+            System.out.println(position + ". " + task.getTaskName());
             position++;
         }
+
 
         menu.viewDetailsMenu();
     }
@@ -88,14 +93,15 @@ public class TaskList {
 
         System.out.println("\nINCOMPLETE TASKS\nEnter the number corresponding to the task you would like to see in detail: ");
 
-        Task task = new Task();
+
         int position = 1;
-        for (int i = 0; i < allTasks.size(); i++) {
-            System.out.println(position + ". " + allTasks.get(i) + " ");
+        for(Task task : incompleteTasks){
+            System.out.println(position + ". " + task.getTaskName());
             position++;
         }
 
-        String taskName = allTasks.get((input.nextInt() - 1));
+
+        Task taskName = allTasks.get((input.nextInt() - 1));
         if (taskName.equals(task.getTaskName())) {
             System.out.println(task.getTaskName());
             System.out.println(task.getTaskDescription());
@@ -115,7 +121,7 @@ public class TaskList {
             position++;
         }
 
-        String tempTask = incompleteTasks.get(input.nextInt() - 1);
+        Task tempTask = incompleteTasks.get(input.nextInt() - 1);
         Calendar calendar = Calendar.getInstance();
 
         System.out.println("You have completed " + tempTask + " on " + dateFormat.format(calendar.getTime()));
@@ -148,7 +154,7 @@ public class TaskList {
             position++;
         }
 
-        String taskName = allTasks.get((input.nextInt() - 1));
+        Task taskName = allTasks.get((input.nextInt() - 1));
         if (taskName.equals(task.getTaskName())) {
             System.out.println(task.getTaskName());
             System.out.println(task.getTaskDescription());
@@ -205,7 +211,7 @@ public class TaskList {
             position++;
         }
 
-        String tempTask = allTasks.get(input.nextInt() - 1);
+        Task tempTask = allTasks.get(input.nextInt() - 1);
         System.out.println(tempTask + " has been removed from your task list.");
 
         allTasks.remove(tempTask);
