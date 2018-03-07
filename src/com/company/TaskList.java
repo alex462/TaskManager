@@ -140,10 +140,57 @@ public class TaskList {
 
     protected void editTask() {
 
-        /**
-         * stdout TaskList, prompt user for
-         */
+        System.out.println("\nINCOMPLETE TASKS");
 
+        int position = 1;
+        for(int i = 0; i < allTasks.size(); i++){
+            System.out.println(position + ". " + allTasks.get(i) + " ");
+            position++;
+        }
+
+        String taskName = allTasks.get((input.nextInt() - 1));
+        if (taskName.equals(task.getTaskName())) {
+            System.out.println(task.getTaskName());
+            System.out.println(task.getTaskDescription());
+            System.out.println((task.getTaskDeadline()));
+        }
+
+        System.out.println("Would you like to edit this task's name, currently '" + task.getTaskName() + "'? Enter y/n: ");
+        if(input.nextLine().toUpperCase().equals("y")){
+            System.out.println("Enter the new name of this task: ");
+            task.setTaskName(input.nextLine());
+        }
+        if(input.nextLine().toUpperCase().equals("n")){
+            task.setTaskName(task.getTaskName());
+        }else{
+            invalidEntry();
+        }
+
+        System.out.println("Would you like to edit this task's description, currently '" + task.getTaskDescription() + "'? Enter y/n: ");
+        if(input.nextLine().toUpperCase().equals("y")){
+            System.out.println("Enter the new description for this task: ");
+            task.setTaskDescription(input.nextLine());
+        }
+        if(input.nextLine().toUpperCase().equals("n")){
+            task.setTaskDescription(task.getTaskDescription());
+        }else{
+            invalidEntry();
+        }
+
+        System.out.println("Would you like to edit this task's deadline, currently " + task.getTaskDeadline() + "? Enter y/n: ");
+        if(input.nextLine().toUpperCase().equals("y")){
+            System.out.println("Enter the new deadline for this task: ");
+            task.setTaskDeadline(input.next());
+        }if(input.nextLine().toUpperCase().equals("n")){
+            task.setTaskDeadline(task.getTaskDeadline());
+        }else{
+            invalidEntry();
+        }
+
+        System.out.println("\nHere is your edited task:\n");
+        System.out.println("Task Name: " + task.getTaskName() + "\nDescription: " + task.getTaskDescription() + "\nComplete by: " + task.getTaskDeadline());
+
+        menu.editTasksMenu();
     }
 
     protected void deleteTask() {
